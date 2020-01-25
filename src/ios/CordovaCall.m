@@ -264,7 +264,7 @@ BOOL enableDTMF = NO;
     NSArray<CXCall *> *calls = self.callController.callObserver.calls;
 
     if([calls count] == 1) {
-        //[self.provider reportCallWithUUID:calls[0].UUID endedAtDate:nil reason:CXCallEndedReasonRemoteEnded];
+        [self.provider reportCallWithUUID:calls[0].UUID endedAtDate:nil reason:CXCallEndedReasonRemoteEnded];
         CXEndCallAction *endCallAction = [[CXEndCallAction alloc] initWithCallUUID:calls[0].UUID];
         CXTransaction *transaction = [[CXTransaction alloc] initWithAction:endCallAction];
         [self.callController requestTransaction:transaction completion:^(NSError * _Nullable error) {
