@@ -45,7 +45,7 @@ BOOL enableDTMF = NO;
     providerConfiguration.maximumCallsPerCallGroup = 1;
     NSMutableSet *handleTypes = [[NSMutableSet alloc] init];
     [handleTypes addObject:@(CXHandleTypePhoneNumber)];
-    providerConfiguration.supportedHandleTypes = handleTypes;
+    // providerConfiguration.supportedHandleTypes = handleTypes;
     providerConfiguration.supportsVideo = YES;
     if (@available(iOS 11.0, *)) {
         providerConfiguration.includesCallsInRecents = NO;
@@ -86,7 +86,7 @@ BOOL enableDTMF = NO;
     }
     NSMutableSet *handleTypes = [[NSMutableSet alloc] init];
     [handleTypes addObject:@(CXHandleTypePhoneNumber)];
-    providerConfiguration.supportedHandleTypes = handleTypes;
+    // providerConfiguration.supportedHandleTypes = handleTypes;
     providerConfiguration.supportsVideo = hasVideo;
     if (@available(iOS 11.0, *)) {
         providerConfiguration.includesCallsInRecents = includeInRecents;
