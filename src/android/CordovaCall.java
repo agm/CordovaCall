@@ -76,11 +76,22 @@ public class CordovaCall extends CordovaPlugin {
                    .build();
           tm.registerPhoneAccount(phoneAccount);          
         }
-        callbackContextMap.put("answer",new ArrayList<CallbackContext>());
-        callbackContextMap.put("reject",new ArrayList<CallbackContext>());
-        callbackContextMap.put("hangup",new ArrayList<CallbackContext>());
-        callbackContextMap.put("sendCall",new ArrayList<CallbackContext>());
-        callbackContextMap.put("receiveCall",new ArrayList<CallbackContext>());
+        
+        if(!isCallbackContextMapInitialized()) {
+            initializeCallbackContextMap();
+        }
+    }
+
+    private void initializeCallbackContextMap() {
+        callbackContextMap.put("answer", new ArrayList<CallbackContext>());
+        callbackContextMap.put("reject", new ArrayList<CallbackContext>());
+        callbackContextMap.put("hangup", new ArrayList<CallbackContext>());
+        callbackContextMap.put("sendCall", new ArrayList<CallbackContext>());
+        callbackContextMap.put("receiveCall", new ArrayList<CallbackContext>());
+    }
+
+    private boolean isCallbackContextMapInitialized() {
+        return callbackContextMap.entrySet().size() > 0;
     }
 
     @Override
