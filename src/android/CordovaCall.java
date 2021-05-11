@@ -44,6 +44,7 @@ public class CordovaCall extends CordovaPlugin {
     private static HashMap<String, ArrayList<CallbackContext>> callbackContextMap = new HashMap<String, ArrayList<CallbackContext>>();
     private static CordovaInterface cordovaInterface;
     private static Icon icon;
+    private static boolean isInitialized;
 
     public static HashMap<String, ArrayList<CallbackContext>> getCallbackContexts() {
         return callbackContextMap;
@@ -59,6 +60,10 @@ public class CordovaCall extends CordovaPlugin {
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        if (this.isInitialized) {
+          return;
+        }
+
         cordovaInterface = cordova;
         super.initialize(cordova, webView);
         appName = getApplicationName(this.cordova.getActivity().getApplicationContext());
@@ -77,9 +82,9 @@ public class CordovaCall extends CordovaPlugin {
           tm.registerPhoneAccount(phoneAccount);          
         }
         
-        if(!isCallbackContextMapInitialized()) {
-            initializeCallbackContextMap();
-        }
+        initializeCallbackContextMap();
+
+        this.isInitialized = true;
     }
 
     private void initializeCallbackContextMap() {
@@ -88,10 +93,6 @@ public class CordovaCall extends CordovaPlugin {
         callbackContextMap.put("hangup", new ArrayList<CallbackContext>());
         callbackContextMap.put("sendCall", new ArrayList<CallbackContext>());
         callbackContextMap.put("receiveCall", new ArrayList<CallbackContext>());
-    }
-
-    private boolean isCallbackContextMapInitialized() {
-        return callbackContextMap.entrySet().size() > 0;
     }
 
     @Override
