@@ -95,11 +95,11 @@ public class CordovaCall extends CordovaPlugin {
         callbackContextMap.put("receiveCall", new ArrayList<CallbackContext>());
     }
 
-    @Override
+    /* @Override
     public void onResume(boolean multitasking) {
         super.onResume(multitasking);
         this.checkCallPermission();
-    }
+    } */
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
